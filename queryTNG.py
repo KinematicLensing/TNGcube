@@ -24,7 +24,14 @@ def get_snapNum(redshift, simName='TNG50-1', baseURL=baseURL):
 
 
 class QueryTNG():
+    '''The manager object to handle the entire query process.'''
     def __init__(self, simName, snapNum, baseURL=baseURL, headers=headers):
+        '''
+            Args:
+                simName : [str] 
+                    The simulation name tag associated with the TNG database.
+                    available simName : 'TNG50-1', 'TNG100-1' 
+        '''
 
         self.simURL = baseURL+simName+'/'
         self.snapURL = self.simURL+f'snapshots/{int(snapNum)}/'
@@ -151,7 +158,7 @@ class QueryTNG():
         return snap
     
     def download_subhalos(self, subhaloIDs):
-        '''Download and preprocess the queried subhalo information, and save it as a dictionary that can work with TNGcube.
+        '''Download and pre-process the queried subhalo information, and save it as a dictionary that can work with TNGcube.
             Output file:
                 e.g. subhaloIDs = [46, 47]
                 save the subhalo info. as './cutout_46.pkl' and './cutout_47.pkl'
